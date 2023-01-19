@@ -10,7 +10,7 @@ export const Userspage = () => {
         <GetUsersList />
       </div>
       <div>
-        <Link to={"/main/user/new"}>
+        <Link to={"/main/users/new"}>
           <Button
             sx={{
               position: "absolute",

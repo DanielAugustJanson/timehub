@@ -6,6 +6,7 @@ import Errorpage from './pages/Errorpage';
 import { Loginpage } from './pages/Loginpage';
 import { Mainpage } from './pages/Mainpage';
 import { Newuserpage } from './pages/Newuserpage';
+import { Notfoundpage } from './pages/Notfoundpage';
 import { Rosterpage } from './pages/Rosterpage';
 import { Userpage } from './pages/Userpage';
 import { Userspage } from './pages/Userspage';
@@ -31,15 +32,18 @@ const router = createBrowserRouter([
         element:<Userspage/>,
         errorElement:<Errorpage/>
       },{
-        path:"/main/user/new",
+        path:"/main/users/new",
         element:<Newuserpage/>,
         errorElement:<Errorpage/>
       },{
-        path:"/main/user/:id",
+        path:"/main/users/:id",
         element:<Userpage/>,
         errorElement:<Errorpage/>
       }
     ]
+  },{
+    path:"*",
+    element:<Notfoundpage/>
   }
 
 ])

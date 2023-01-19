@@ -27,7 +27,7 @@ exports.getUser = async (req, res) => {
       phone: element.profileData.phone,
       email: element.profileData.email
     }
-    res.json(userData).status(200)
+    res.json(userData)
   })
   }catch{
     res.sendStatus(500)
