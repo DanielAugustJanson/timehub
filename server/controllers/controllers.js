@@ -11,27 +11,30 @@ const UserSchema = require("../db/schema");
 
 exports.getUser = async (req, res) => {
   console.log("user data requested");
+  console.log(req.body.id)
   //Check if logged in
-
-
-  //request user info from db
+  
   try{
     let userData;
 
   UserSchema.findOne({_id:req.body.id}, async function(err, result){
     userData = {
       id: result._id,
-      fname: element.profileData.fname,
-      lname: element.profileData.lname,
-      role: element.workData.role,
-      phone: element.profileData.phone,
-      email: element.profileData.email
+      fname: result.profileData.fname,
+      lname: result.profileData.lname,
+      role: result.workData.role,
+      phone: result.profileData.contact.phone,
+      email: result.profileData.contact.email
     }
     res.json(userData)
   })
   }catch{
     res.sendStatus(500)
   }
+
+
+  //request user info from db
+  
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -118,7 +121,7 @@ exports.createUser = (req, res) => {
 
 exports.GetRoster = (req, res) => {
   console.log("Roster request recieved")
-  console.log(req)
+  console.log(req.body.month)
 }
 
 

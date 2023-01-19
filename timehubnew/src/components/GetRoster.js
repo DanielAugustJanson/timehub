@@ -25,9 +25,12 @@ export const GetRoster = () => {
         }
     }
     const SendData = async() =>{
-        await axios.get("http://localhost:8080/roster",RosterDate)
+        await axios.post("http://localhost:8080/getroster",RosterDate)
         .then((response)=>{
             console.log("somethign")
+        })
+        .catch((err)=>{
+            window.alert("Error fetching data")
         })
     }
 
@@ -43,7 +46,8 @@ export const GetRoster = () => {
         flexDirection:"column",
         flexWrap:"wrap",
         justifyContent:"space-evenly",
-        margin:"auto",
+        position:"fixed",
+        left:"0px",
         border:"1vh",
         padding:"1vh",
         backgroundColor: "rgba(213, 217, 218, 0.4)",

@@ -4,10 +4,12 @@ import axios from "axios";
 
 const GetUser = (id) => {
     const [user,setUser] = useState([])
+    const userId = id
+    console.log(userId)
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/users",id)
+      .post("http://localhost:8080/user",{id:userId})
       .then((res) => {
         setUser(res.data);
       })

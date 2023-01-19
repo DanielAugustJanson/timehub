@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import './index.css';
 import Errorpage from './pages/Errorpage';
 import { Loginpage } from './pages/Loginpage';
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
       {
         path:"/main/roster",
         element:<Rosterpage/>,
-        errorElement:<Errorpage/>
+        errorElement:<Errorpage/>,
+        children:[{
+          path:"/main/roster/:id",
+          //element:<TheRoster/>
+        }]
       },{
         path:"/main/users",
         element:<Userspage/>,
