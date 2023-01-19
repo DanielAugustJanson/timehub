@@ -14,7 +14,9 @@ export const Loginbox = () => {
       })
       .then((response) => {
         if (response.data.success) {
-          localStorage.setItem("tokenData", response.data);
+          localStorage.setItem("tokenData", response.data.accessToken);
+          localStorage.setItem("refreshToken", response.data.refreshToken);
+          localStorage.setItem("userId", response.data.userId);
           
           window.location.href ="/main"
         } else {

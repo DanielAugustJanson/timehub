@@ -1,4 +1,5 @@
 import { Button, MenuItem, Paper, Select, Typography } from '@mui/material'
+import axios from 'axios'
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
@@ -19,7 +20,15 @@ export const GetRoster = () => {
             RosterDate.year === ""
         ){
             window.alert("Please select both fields")
+        }else{
+            SendData()
         }
+    }
+    const SendData = async() =>{
+        await axios.get("http://localhost:8080/roster",RosterDate)
+        .then((response)=>{
+            console.log("somethign")
+        })
     }
 
 

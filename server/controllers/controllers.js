@@ -116,6 +116,17 @@ exports.createUser = (req, res) => {
 //////////////////////////////////////////////////////////////////////
 
 
+exports.GetRoster = (req, res) => {
+  console.log("Roster request recieved")
+  console.log(req)
+}
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+
 exports.deleteUser = (req, res) => {
   console.log("User deleted");
 };

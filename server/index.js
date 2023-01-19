@@ -12,12 +12,14 @@ require("dotenv").config()
 //Routers-----------------------------------------
 const userInfo = require("./routes/userInfo.js");
 const loginRouter = require("./routes/login.js");
+const rosterRouter = require("./routes/roster.js")
 
 app.use(cors())
 app.use(morgan("dev"))
 app.use(express.json())
 app.use(userInfo)
 app.use(loginRouter)
+app.use(rosterRouter)
 
 
 

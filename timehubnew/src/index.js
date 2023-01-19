@@ -7,6 +7,7 @@ import { Loginpage } from './pages/Loginpage';
 import { Mainpage } from './pages/Mainpage';
 import { Newuserpage } from './pages/Newuserpage';
 import { Rosterpage } from './pages/Rosterpage';
+import { Userpage } from './pages/Userpage';
 import { Userspage } from './pages/Userspage';
 import reportWebVitals from './reportWebVitals';
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       },{
         path:"/main/user/new",
         element:<Newuserpage/>,
+        errorElement:<Errorpage/>
+      },{
+        path:"/main/user/:id",
+        element:<Userpage/>,
         errorElement:<Errorpage/>
       }
     ]
