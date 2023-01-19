@@ -1,9 +1,9 @@
 import { Button, MenuItem, Paper, Select, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
-export const GetRoster = () => {
+export const FindRoster = () => {
 
     const [RosterDate,SetRosterDate] = useState({
         month:"",
@@ -14,26 +14,17 @@ export const GetRoster = () => {
     const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     const years = ["2023","2024","2025"]
     
-    const FindRoster = () =>{
+    /*const DirectRoster = () =>{
         if(
             RosterDate.month === "" ||
             RosterDate.year === ""
         ){
             window.alert("Please select both fields")
         }else{
-            SendData()
+            window.location.href="/main/roster/"+RosterDate.month+RosterDate.year
         }
-    }
-    const SendData = async() =>{
-        await axios.post("http://localhost:8080/getroster",RosterDate)
-        .then((response)=>{
-            console.log("somethign")
-        })
-        .catch((err)=>{
-            window.alert("Error fetching data")
-        })
-    }
-
+    }*/
+    //For now I will leave it up to user to not mess up by leaving values blank 
 
 
   return (
@@ -66,7 +57,9 @@ export const GetRoster = () => {
           return <MenuItem key={year} value={year}>{year}</MenuItem>;
         })}
         </Select>
-        <Button onClick={FindRoster} >Get Roster</Button>
+        <Link to={"/main/roster/"+RosterDate.month+RosterDate.year}>
+        <Button>Get Roster</Button>
+        </Link>
     </Paper>
     <Outlet/>
     </>

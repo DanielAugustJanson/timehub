@@ -2,6 +2,6 @@ const express = require("express")
 const router = express.Router()
 const controller = require("../controllers/controllers")
 
-router.get("/getroster",controller.GetRoster)
+router.post("/getroster",controller.GetRoster)
 
 module.exports = router

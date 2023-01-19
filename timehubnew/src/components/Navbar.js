@@ -17,7 +17,7 @@ export const Navbar = () => {
             <Link to={"/main/users"}>
               <Typography id="navButton">Users</Typography>
             </Link>
-            <Link to={"/main/users/"+localStorage.getItem("userId")}>
+            <Link reloadDocument to={"/main/users/"+localStorage.getItem("userId")}>
               <Typography id="navButton">Profile</Typography>
             </Link>
             <Link to={"/main/roster"}>

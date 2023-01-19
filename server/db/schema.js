@@ -27,4 +27,8 @@ const userDataSchema = new mongoose.Schema(
   { collection: "usersNew" }
 )
 
+const workRosterSchema = new mongoose.Schema(
+  
+)
+
 module.exports = mongoose.model("usersNew", userDataSchema);

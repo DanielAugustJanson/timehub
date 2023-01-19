@@ -8,7 +8,8 @@ import { Loginpage } from './pages/Loginpage';
 import { Mainpage } from './pages/Mainpage';
 import { Newuserpage } from './pages/Newuserpage';
 import { Notfoundpage } from './pages/Notfoundpage';
-import { Rosterpage } from './pages/Rosterpage';
+import { Rosterfindpage } from './pages/Rosterfindpage';
+import Rostershowpage from './pages/Rostershowpage';
 import { Userpage } from './pages/Userpage';
 import { Userspage } from './pages/Userspage';
 import reportWebVitals from './reportWebVitals';
@@ -26,11 +27,12 @@ const router = createBrowserRouter([
     children:[
       {
         path:"/main/roster",
-        element:<Rosterpage/>,
+        element:<Rosterfindpage/>,
         errorElement:<Errorpage/>,
         children:[{
           path:"/main/roster/:id",
-          //element:<TheRoster/>
+          element:<Rostershowpage/>,
+          errorElement:<Errorpage/>
         }]
       },{
         path:"/main/users",
