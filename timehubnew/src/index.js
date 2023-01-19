@@ -6,6 +6,7 @@ import Errorpage from './pages/Errorpage';
 import { Loginpage } from './pages/Loginpage';
 import { Mainpage } from './pages/Mainpage';
 import { Newuserpage } from './pages/Newuserpage';
+import { Rosterpage } from './pages/Rosterpage';
 import { Userspage } from './pages/Userspage';
 import reportWebVitals from './reportWebVitals';
 
@@ -21,11 +22,17 @@ const router = createBrowserRouter([
     errorElement:<Errorpage/>,
     children:[
       {
+        path:"/main/roster",
+        element:<Rosterpage/>,
+        errorElement:<Errorpage/>
+      },{
         path:"/main/users",
-        element:<Userspage/>
+        element:<Userspage/>,
+        errorElement:<Errorpage/>
       },{
         path:"/main/user/new",
-        element:<Newuserpage/>
+        element:<Newuserpage/>,
+        errorElement:<Errorpage/>
       }
     ]
   }

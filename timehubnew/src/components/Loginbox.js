@@ -15,7 +15,8 @@ export const Loginbox = () => {
       .then((response) => {
         if (response.data.success) {
           localStorage.setItem("tokenData", response.data);
-          window.alert("Login Success");
+          
+          window.location.href ="/main"
         } else {
           window.alert("Login failed");
         }
@@ -32,6 +33,8 @@ export const Loginbox = () => {
         paddingTop: "5vh",
         alignItems: "center",
         height: "25vh",
+        minHeight:"200px",
+        minWidth:"300px",
         width: "50vh",
         position: "center",
         backgroundColor: "rgba(201, 201, 201, 0.8)"
