@@ -32,10 +32,6 @@ exports.getUser = async (req, res) => {
   }catch{
     res.sendStatus(500)
   }
-
-
-  //request user info from db
-  
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -133,11 +129,44 @@ exports.FindRoster = (req, res) => {
   }catch{
     console.log("something went wrong")
   }
-  
-
 }
 
+//////////////////////////////////////////////////////////////////////
 
+exports.GenerateRoster = (req, res) =>{
+  console.log("Roster generation request recieved, starting to generate.")
+  let userlist = [];
+
+  const monthName = (req.body.id).slice(0,-4)
+  const monthNum = monthToNumConverter(monthName)
+  const workYear = (req.body.id).slice(-4)
+  const workName = req.body.id
+  const amountOfDays = getDaysInMonth(monthNum,workYear)
+
+  //So far so good
+  console.log(monthName,monthNum,workYear,workName,amountOfDays)
+
+
+  
+  try{
+    UserSchema.find({}, async function (err, result) {
+      result.forEach((element) => {
+        let user = {
+          id: element._id,
+          weight: (element.workData.position*20)
+          //Since every day is rated as 1 weight unit, and there are ~20 work days per month (debatable I know)
+          //I am multiplying the position (range from 0-1) to define how much weight is worker expected to acomplish. 
+
+        };
+        userlist.push(user);
+      });
+    })
+  }catch{
+
+
+
+  }
+}
 
 
 
@@ -151,3 +180,42 @@ exports.userAuthenticated = (req, res, next) => {
   //Check if user is logged in
   next();
 };
+
+
+function getDaysInMonth (month,year){
+
+    return new Date( year,month,0).getDate()
+
+} 
+
+
+
+//Yandere Dev Level on stupidity, but I don't have time
+function monthToNumConverter(month){
+  switch(month){
+    case "January":
+      return 1
+    case "February":
+      return 2
+    case "March":
+      return 3
+    case "April":
+      return 4
+    case "May":
+      return 5
+    case "June":
+      return 6
+    case "July":
+      return 7
+    case "August":
+      return 8
+    case "September":
+      return 9
+    case "October":
+      return 10
+    case "November":
+      return 11
+    case "December":
+      return 12
+  }
+}

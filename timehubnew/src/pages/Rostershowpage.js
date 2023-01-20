@@ -23,18 +23,21 @@ const Rostershowpage = (props) => {
         })
         .catch((err) => {
           window.alert("error encountered");
+          SetRosterExists(false)
         });
     };
     SendRoster();
   }, []);
 
   const GenerateRoster = async()=>{
-    await axios.post("http://localhost:8080/users/new",{id})
+    await axios.post("http://localhost:8080/generateRoster",{id})
     .then((response)=>{
         if(response.data.success){
             window.alert("Roster generated")
-            navigate("/")
+            navigate("/main/roster/"+{id})
         }
+    }).catch((err)=>{
+        window.alert("error encountered when generating roster")
     })
 
   }
@@ -62,7 +65,7 @@ const Rostershowpage = (props) => {
             padding:"1vh",
             backgroundColor: "rgba(213, 217, 218, 0.4)",
         }}>
-            <Button>Generate Work Roster</Button>
+            <Button onClick={GenerateRoster}>Generate Work Roster</Button>
         </Paper>
     )
   }
