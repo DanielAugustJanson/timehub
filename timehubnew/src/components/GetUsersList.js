@@ -39,7 +39,7 @@ const GetUsersList = () => {
             padding:"1vh"
             
           }}>
-            <Link to={user.id}>
+            <Link style={{ textDecoration: 'none', color:"blue" }} to={user.id}>
               <Typography sx={{
                 fontFamily:"monospace",
                 textDecoration:"none",

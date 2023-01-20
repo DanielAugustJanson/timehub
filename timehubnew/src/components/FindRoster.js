@@ -30,8 +30,8 @@ export const FindRoster = () => {
     <>
     <Paper sx={{
         width:"20vh",
-        minHeight:"20vh",
-        minWidth:"10vh",
+        minHeight:"200px",
+        minWidth:"200px",
         display:"flex",
         flexDirection:"column",
         flexWrap:"wrap",
@@ -42,7 +42,7 @@ export const FindRoster = () => {
         padding:"1vh",
         backgroundColor: "rgba(213, 217, 218, 0.4)",
     }}>
-        <Typography>Select</Typography>
+        <Typography variant='h5'>Select Period</Typography>
         <Select
         onChange={(e)=>{SetRosterDate({...RosterDate, month: e.target.value})}}>
         {months.map((month) => {
@@ -57,7 +57,7 @@ export const FindRoster = () => {
         })}
         </Select>
         <Link reloadDocument to={"/main/roster/"+RosterDate.month+RosterDate.year}>
-        <Button variant='outlined'>Get Roster</Button>
+        <Button variant='outlined' color='success'>Get Roster</Button>
         </Link>
     </Paper>
     </>

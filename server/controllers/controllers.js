@@ -152,7 +152,7 @@ exports.GenerateRoster = (req, res) => {
     UserSchema.find({}, async function (err, result) {
       result.forEach((element) => {
         let user = {
-          name: (element.profileData.fname + element.profileData.lname),
+          name: (element.profileData.fname +" "+ element.profileData.lname),
           weight: element.workData.position * 20,
           //Since every day is rated as 1 weight unit, and there are ~20 work days per month (debatable I know)
           //I am multiplying the position (range from 0-1) to define how much weight is worker expected to acomplish.
