@@ -3,7 +3,8 @@
 const bcrypt = require("bcrypt");
 
 const mongoose = require("mongoose");
-const UserSchema = require("../db/schema");
+const {UserSchema} = require("../db/schema");
+const {workRoster} = require("../db/schema");
 
 
 //////////////////////////////////////////////////////////////////////
@@ -119,9 +120,21 @@ exports.createUser = (req, res) => {
 //////////////////////////////////////////////////////////////////////
 
 
-exports.GetRoster = (req, res) => {
+exports.FindRoster = (req, res) => {
   console.log("Roster request recieved")
-  console.log(req.body.month)
+  console.log(req.body.id)
+  try{
+    workRoster.exists({name:req.body.id}, async function(err, result){
+    if(result==null){
+      res.json({exists:false}).status(200)
+      console.log("Roster doesn't exits")
+    }
+    })
+  }catch{
+    console.log("something went wrong")
+  }
+  
+
 }
 
 

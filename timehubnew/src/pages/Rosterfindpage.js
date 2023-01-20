@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import { Outlet, useParams } from 'react-router-dom'
+import { Outlet} from 'react-router-dom'
 import { FindRoster } from '../components/FindRoster'
 
 export const Rosterfindpage = () => {
   
+
   return (
     <div>
         <FindRoster></FindRoster>
@@ -11,3 +12,6 @@ export const Rosterfindpage = () => {
     </div>
   )
 }
+
+
+///////THIS IS THE PAGE FOR SEARCH COMPONENT!!!!!

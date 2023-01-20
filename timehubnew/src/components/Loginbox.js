@@ -1,10 +1,13 @@
 import { Button, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Loginbox = () => {
   const [UsernameInput, SetUsername] = useState("");
   const [PasswordInput, SetPassword] = useState("");
+
+  const navigate =  useNavigate()
 
   const CheckLoginData = async () => {
     await axios
@@ -18,7 +21,7 @@ export const Loginbox = () => {
           localStorage.setItem("refreshToken", response.data.refreshToken);
           localStorage.setItem("userId", response.data.userId);
           
-          window.location.href ="/main"
+          navigate("/main")
         } else {
           window.alert("Login failed");
         }

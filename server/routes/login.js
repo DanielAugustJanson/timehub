@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const authent= require("../controllers/tokenauth")
 
-const UserSchema = require("../db/schema");
+const {UserSchema} = require("../db/schema");
 
 
 //Temp way

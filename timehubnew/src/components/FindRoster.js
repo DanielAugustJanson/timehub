@@ -1,7 +1,6 @@
 import { Button, MenuItem, Paper, Select, Typography } from '@mui/material'
-import axios from 'axios'
 import React, { useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 export const FindRoster = () => {
 
@@ -57,11 +56,10 @@ export const FindRoster = () => {
           return <MenuItem key={year} value={year}>{year}</MenuItem>;
         })}
         </Select>
-        <Link to={"/main/roster/"+RosterDate.month+RosterDate.year}>
-        <Button>Get Roster</Button>
+        <Link reloadDocument to={"/main/roster/"+RosterDate.month+RosterDate.year}>
+        <Button variant='outlined'>Get Roster</Button>
         </Link>
     </Paper>
-    <Outlet/>
     </>
   )
 }
