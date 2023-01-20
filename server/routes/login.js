@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const authent= require("../controllers/tokenauth")
 
-const UserSchema = require("../db/schema");
+const {UserSchema} = require("../db/schema");
 
 
 //Temp way
@@ -33,7 +33,7 @@ router.post("/loginHashed", async (req, res) => {
         const accessToken = authent.generateAccessToken(user)
         const refreshToken = jwt.sign(user, process.env.REFREST_TOKEN_SECRET)
 
-      res.json({accessToken:accessToken, refreshToken: refreshToken,  success: true}).status(215);
+      res.json({accessToken:accessToken, refreshToken: refreshToken,  success: true ,userId: result._id}).status(215);
       
       console.log(accessToken)
     }else{

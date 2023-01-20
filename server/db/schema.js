@@ -27,4 +27,15 @@ const userDataSchema = new mongoose.Schema(
   { collection: "usersNew" }
 )
 
-module.exports = mongoose.model("usersNew", userDataSchema);
+const workRosterSchema = new mongoose.Schema({
+  name: {type: String, required:true},
+  workDays:[]
+},{collection:"workRoster"})
+
+const UserSchema = mongoose.model("usersNew", userDataSchema);
+const workRoster = mongoose.model("workRoster",workRosterSchema);
+
+module.exports = {
+  UserSchema,workRoster
+}
+

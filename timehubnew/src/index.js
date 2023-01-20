@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import './index.css';
 import Errorpage from './pages/Errorpage';
 import { Loginpage } from './pages/Loginpage';
 import { Mainpage } from './pages/Mainpage';
 import { Newuserpage } from './pages/Newuserpage';
-import { Rosterpage } from './pages/Rosterpage';
+import { Notfoundpage } from './pages/Notfoundpage';
+import { Rosterfindpage } from './pages/Rosterfindpage';
+import Rostershowpage from './pages/Rostershowpage';
+import { Userpage } from './pages/Userpage';
 import { Userspage } from './pages/Userspage';
 import reportWebVitals from './reportWebVitals';
 
@@ -23,18 +27,30 @@ const router = createBrowserRouter([
     children:[
       {
         path:"/main/roster",
-        element:<Rosterpage/>,
-        errorElement:<Errorpage/>
+        element:<Rosterfindpage/>,
+        errorElement:<Errorpage/>,
+        children:[{
+          path:"/main/roster/:id",
+          element:<Rostershowpage/>,
+          errorElement:<Errorpage/>
+        }]
       },{
         path:"/main/users",
         element:<Userspage/>,
         errorElement:<Errorpage/>
       },{
-        path:"/main/user/new",
+        path:"/main/users/new",
         element:<Newuserpage/>,
+        errorElement:<Errorpage/>
+      },{
+        path:"/main/users/:id",
+        element:<Userpage/>,
         errorElement:<Errorpage/>
       }
     ]
+  },{
+    path:"*",
+    element:<Notfoundpage/>
   }
 
 ])
