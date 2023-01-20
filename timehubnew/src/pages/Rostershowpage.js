@@ -66,6 +66,8 @@ const Rostershowpage = (props) => {
             <Typography variant="h4">{Roster.name.slice(0, -4)} {Roster.name.slice(-4)}</Typography>
             {Roster.workDays.map((workday=>(
                 workday.map(()=>(
+
+                    //Object unpacking could be better made.
                     <Box>
                     <Typography>{workday[0]}</Typography>
                 </Box>
