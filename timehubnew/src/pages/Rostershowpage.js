@@ -10,9 +10,7 @@ import { Box } from "@mui/system";
 const Rostershowpage = (props) => {
   const { id } = useParams();
   const [RosterExists, SetRosterExists] = useState(Boolean);
-  const [WorkRoster, SetWorkRoster] = useState({});
-  SetRosterExists(false)
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   let workRoster;
 
   useEffect(() => {
@@ -23,78 +21,80 @@ const Rostershowpage = (props) => {
         .post("http://localhost:8080/findRoster", { id })
         .then((response) => {
           console.log(response.data.exists);
-          SetWorkRoster(response.data.result)
-          
+          console.log(response.data.result);
+          workRoster = response.data.result;
+
           SetRosterExists(response.data.exists);
         })
         .catch((err) => {
           window.alert("error encountered");
-          SetRosterExists(false)
+          SetRosterExists(false);
         });
     };
     SendRoster();
   }, []);
 
-  const GenerateRoster = async()=>{
-    await axios.post("http://localhost:8080/generateRoster",{id})
-    .then((response)=>{
-        if(response.data.success){
-            window.alert("Roster generated")
-            navigate("/main/roster/"+{id})
+  const GenerateRoster = async () => {
+    await axios
+      .post("http://localhost:8080/generateRoster", { id })
+      .then((response) => {
+        if (response.data.success) {
+          window.alert("Roster generated");
+          navigate("/main/roster/" + { id });
         }
-    }).catch((err)=>{
-        window.alert("error encountered when generating roster")
-    })
+      })
+      .catch((err) => {
+        window.alert("error encountered when generating roster");
+      });
+  };
 
-  }
-
-
-  if(RosterExists){
-    return(
-        <Paper
+  if (RosterExists) {
+    return (
+      <Paper
         sx={{
-            width:"60vh",
-            height:"80vh",
-            minHeight:"700px",
-            minWidth:"200px",
-            display:"flex",
-            flexDirection:"column",
-            flexWrap:"wrap",
-            justifyContent:"space-evenly",
-            margin:"auto",
-            border:"1vh",
-            padding:"1vh",
-            backgroundColor: "rgba(213, 217, 218, 0.4)",
-        }}>
-            <Typography>{WorkRoster.name}</Typography>
-            {WorkRoster.workdays.map((workday=>(
-                <Box>
-                    <Typography></Typography>
-                </Box>
-            )))}
-            
-        </Paper>
-  )}
-  if(!RosterExists){
-    return(
-        <Paper
+          width: "60vh",
+          height: "80vh",
+          minHeight: "700px",
+          minWidth: "200px",
+          display: "flex",
+          flexDirection: "column",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+          margin: "auto",
+          border: "1vh",
+          padding: "1vh",
+          backgroundColor: "rgba(213, 217, 218, 0.4)",
+        }}
+      >
+        <Typography>{workRoster.name}</Typography>
+        {workRoster.workdays.map((workday) => (
+          <Box>
+            <Typography></Typography>
+          </Box>
+        ))}
+      </Paper>
+    );
+  } else {
+    return (
+      <Paper
         sx={{
-            width:"60vh",
-            height:"80vh",
-            minHeight:"700px",
-            minWidth:"200px",
-            display:"flex",
-            flexDirection:"column",
-            flexWrap:"wrap",
-            justifyContent:"space-evenly",
-            margin:"auto",
-            border:"1vh",
-            padding:"1vh",
-            backgroundColor: "rgba(213, 217, 218, 0.4)",
-        }}>
-            <Button onClick={GenerateRoster}>Generate Work Roster</Button>
-        </Paper>
-    )
+          width: "60vh",
+          height: "80vh",
+          minHeight: "700px",
+          minWidth: "200px",
+          display: "flex",
+          flexDirection: "column",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+          margin: "auto",
+          border: "1vh",
+          padding: "1vh",
+          backgroundColor: "rgba(213, 217, 218, 0.4)",
+        }}
+      >
+        <Button onClick={GenerateRoster}>Generate Work Roster</Button>
+      </Paper>
+    );
   }
 };
 

@@ -37,6 +37,6 @@
   }
 }
 
-Link{
-  text-decoration: none;
+Link:visited{
+  color: white;
 }
