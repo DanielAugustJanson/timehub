@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Paper } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
 //////THIS IS THE PAGE FOR THE ROSTER SHOW
 
 const Rostershowpage = (props) => {
   const { id } = useParams();
   const [RosterExists, SetRosterExists] = useState(Boolean);
+  const [WorkRoster, SetWorkRoster] = useState({});
+  SetRosterExists(false)
   const navigate = useNavigate()
+  let workRoster;
 
   useEffect(() => {
     console.log({ id });
@@ -19,6 +23,8 @@ const Rostershowpage = (props) => {
         .post("http://localhost:8080/findRoster", { id })
         .then((response) => {
           console.log(response.data.exists);
+          SetWorkRoster(response.data.result)
+          
           SetRosterExists(response.data.exists);
         })
         .catch((err) => {
@@ -45,9 +51,30 @@ const Rostershowpage = (props) => {
 
   if(RosterExists){
     return(
-        <div>IT DOES EXISTS????</div>
-    )
-  }
+        <Paper
+        sx={{
+            width:"60vh",
+            height:"80vh",
+            minHeight:"700px",
+            minWidth:"200px",
+            display:"flex",
+            flexDirection:"column",
+            flexWrap:"wrap",
+            justifyContent:"space-evenly",
+            margin:"auto",
+            border:"1vh",
+            padding:"1vh",
+            backgroundColor: "rgba(213, 217, 218, 0.4)",
+        }}>
+            <Typography>{WorkRoster.name}</Typography>
+            {WorkRoster.workdays.map((workday=>(
+                <Box>
+                    <Typography></Typography>
+                </Box>
+            )))}
+            
+        </Paper>
+  )}
   if(!RosterExists){
     return(
         <Paper

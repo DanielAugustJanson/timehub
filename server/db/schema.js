@@ -28,13 +28,8 @@ const userDataSchema = new mongoose.Schema(
 )
 
 const workRosterSchema = new mongoose.Schema({
-  name: {type: String},
-  workDays:{
-    1:{
-      minWeight:{type: Number},
-      workers:[]
-    }
-  }
+  name: {type: String, required:true},
+  workDays:[]
 },{collection:"workRoster"})
 
 const UserSchema = mongoose.model("usersNew", userDataSchema);
